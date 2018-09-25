@@ -22,16 +22,17 @@ y_data = np.square(x_data) - 0.5 + noise
 # 构造y值，并加入随机波动
 
 xs = tf.placeholder(tf.float32, [None, 1])
-ys = tf.placeholder(tf.float32,[None, 1])
+ys = tf.placeholder(tf.float32, [None, 1])
+# 输入预留
 
 l1 = add_layer(xs,1,10,activation_function = tf.nn.relu)
 prediction = add_layer(l1,10,1,activation_function = None)
 
 loss = tf.reduce_mean(tf.reduce_sum(tf.square(ys - prediction),reduction_indices = [1]))
 train_step = tf.train.GradientDescentOptimizer(0.1).minimize(loss)
-
+# 使用优化器优化loss值
 init_op = tf.global_variables_initializer()
-
+# 初始化
 with tf.Session() as sess:
 	sess.run(init_op)
 	# 输出真实数据 start
@@ -50,10 +51,12 @@ with tf.Session() as sess:
 				ax.lines.remove(lines[0])
 			except Exception:
 				pass
-
+			# 可视化输出预测函数 start
 			prediction_value = sess.run(prediction,feed_dict={xs:x_data})
 			lines = ax.plot(x_data,prediction_value,'r-',lw=5)
+			# 以红线描绘出训练后的结果
 			plt.pause(0.1)
+			# 输出间隔0.1秒
 # 一、
 # np.newaxis的功能是插入新的维度，举个例子
 # a = np.array([1, 2, 3, 4, 5, 6])
