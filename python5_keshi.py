@@ -46,9 +46,9 @@ with tf.Session() as sess:
 	# 合并
 	writer = tf.summary.FileWriter("logs/",sess.graph)
 	sess.run(init_op)
-	for x in range(1001):
+	for x in range(10001):
 		sess.run(train_step, feed_dict = {xs:x_data,ys:y_data})
 		if x % 500 == 0:
 			# print(sess.run(loss, feed_dict = {xs:x_data,ys:y_data}))
 			result = sess.run(merged, feed_dict = {xs:x_data,ys:y_data})
-			# writer.add_summery(result,x)
+			writer.add_summary(result,x)
