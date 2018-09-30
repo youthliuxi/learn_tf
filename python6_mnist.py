@@ -51,7 +51,7 @@ with tf.Session() as sess:
 
     merged = tf.summary.merge_all()
     train_writer = tf.summary.FileWriter("mnist_logs/train", sess.graph)
-    # test_writer = tf.summary.FileWriter("mnist_logs/test", sess.graph)
+    test_writer = tf.summary.FileWriter("mnist_logs/test", sess.graph)
     # important step
     sess.run(init_op)
 
@@ -62,9 +62,9 @@ with tf.Session() as sess:
             # print(compute_accuracy(mnist.test.images, mnist.test.labels))
             # record loss
             train_result = sess.run(merged, feed_dict={xs: batch_xs, ys: batch_ys})
-            # test_result = sess.run(merged, feed_dict={xs: mnist.test.images, ys: mnist.test.labels})
+            test_result = sess.run(merged, feed_dict={xs: mnist.test.images, ys: mnist.test.labels})
             train_writer.add_summary(train_result, i)
-            # test_writer.add_summary(test_result, i)
+            test_writer.add_summary(test_result, i)
 
     # 训练1000步
     # 0.098 每次10个数据
