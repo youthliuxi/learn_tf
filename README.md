@@ -163,3 +163,6 @@ with tf.Session() as sess:
 
 #### tensorboard可视化工具
 [tensorboard.md](tensorboard可视化工具.md)
+
+#### 关于mnist数据集的训练代码
+&emsp;&emsp;原本打算把之前学习的时候复刻的那几个关于mnist的代码上传到这个项目上来，后来发现太大了，就另起一个炉灶吧，可是，不知道为啥，本地删除了文件夹后，再push到github时，网页端并没有显示立即删除，随手更新一下readme，看一看效果吧。
